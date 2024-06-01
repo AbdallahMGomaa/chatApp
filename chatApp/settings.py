@@ -37,10 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'auth.apps.ChatAppConfig',
     'rest_framework',
     'rest_framework_simplejwt',
-    'auth'
+    'auth_app'
 ]
 
 MIDDLEWARE = [
@@ -128,7 +127,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-AUTH_USER_MODEL = 'auth.Account'
+AUTH_USER_MODEL = 'auth_app.Account'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
