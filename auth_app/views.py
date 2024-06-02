@@ -1,13 +1,5 @@
-from django.shortcuts import render
 from rest_framework.generics import CreateAPIView
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView
-
 from auth_app.serializers import SignupSerializer
-
-
-class LoginView(TokenObtainPairView):
-    serializer_class = TokenObtainPairSerializer
 
 
 class SignupView(CreateAPIView):
