@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'chatApp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('POSTGRES_DB'),
-        'USER': config('POSTGRES_USER'),
-        'PASSWORD': config('POSTGRES_PASSWORD'),
-        'HOST': 'db',
+        'NAME': 'chat_db',
+        'USER': 'chat_user',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
         'PORT': config('POSTGRES_PORT', default='5432'),
     }
 }
@@ -151,3 +151,5 @@ JWT_AUTH = {
     'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7)
 }
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
