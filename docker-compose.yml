@@ -1,0 +1,48 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT}:5432"
+
+  zookeeper:
+    image: bitnami/zookeeper:latest
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    ports:
+      - "${ZOOKEEPER_PORT}:2181"
+
+  kafka:
+    image: bitnami/kafka:latest
+    environment:
+      - KAFKA_BROKER_ID=${KAFKA_BROKER_ID}
+      - KAFKA_ZOOKEEPER_CONNECT=${KAFKA_ZOOKEEPER_CONNECT}
+      - KAFKA_ADVERTISED_LISTENERS=${KAFKA_ADVERTISED_LISTENERS}
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    ports:
+      - "${KAFKA_PORT}:9092"
+    depends_on:
+      - zookeeper
+
+  web:
+    build:
+      context: .
+      args:
+        - GUNICORN_WORKERS=${GUNICORN_WORKERS}
+    command: gunicorn chatApp.wsgi:application --bind 0.0.0.0:${DJANGO_PORT} --workers ${GUNICORN_WORKERS}
+    volumes:
+      - .:/app
+    ports:
+      - "${DJANGO_PORT}:8000"
+    depends_on:
+      - db
+      - kafka
+      - zookeeper
+
+volumes:
+  postgres_data:

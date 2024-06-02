@@ -17,6 +17,7 @@ class CustomTokenRefreshSerializer(TokenRefreshSerializer):
             raise exceptions.AuthenticationFailed(self.error_msg)
         return super().validate(attrs)
 
+
 class SignupSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
@@ -27,4 +28,3 @@ class SignupSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = Account.objects.create_user(**validated_data)
         return user
-
