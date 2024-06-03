@@ -12,4 +12,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app/
 
-CMD ["gunicorn", "--workers", "${GUNICORN_WORKERS}", "chatApp.wsgi:application"]
+CMD ["gunicorn", "--workers", "${GUNICORN_WORKERS}", "chatApp.asgi:application"]

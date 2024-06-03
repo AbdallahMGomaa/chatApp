@@ -34,7 +34,7 @@ services:
       context: .
       args:
         - GUNICORN_WORKERS=${GUNICORN_WORKERS}
-    command: gunicorn chatApp.wsgi:application --bind 0.0.0.0:${DJANGO_PORT} --workers ${GUNICORN_WORKERS}
+    command: gunicorn chatApp.asgi:application --bind 0.0.0.0:${DJANGO_PORT} --workers ${GUNICORN_WORKERS}
     volumes:
       - .:/app
     ports:
