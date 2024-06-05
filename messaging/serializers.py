@@ -9,9 +9,11 @@ class AccountSerializer(serializers.ModelSerializer):
 
 
 class MessageSerializer(serializers.ModelSerializer):
+    sender_username = serializers.CharField(source='sender.username')
+    receiver_username = serializers.CharField(source='receiver.username')
     class Meta:
         model = Message
-        fields = ('id', 'sender', 'receiver', 'content', 'timestamp', 'is_seen')
+        fields = ('id', 'sender', 'receiver', 'content', 'timestamp', 'is_seen', 'sender_username', 'receiver_username')
 
 
 

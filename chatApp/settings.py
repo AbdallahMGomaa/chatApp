@@ -141,8 +141,8 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
     'ALGORITHM': 'HS256',
@@ -162,6 +162,15 @@ ASGI_APPLICATION = 'chatApp.asgi.application'
 
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('localhost', 6379)],
+        }
     },
 }
+
+KAFKA_BROKER_URL = config('KAFKA_BROKER_URL', default='localhost:9092')
+
+KAFKA_CHAT_TOPIC = config('KAFKA_CHAT_TOPIC', default='chat')
+KAFKA_SIGNUP_TOPIC = config('KAFKA_SIGNUP_TOPIC', default='signup')
+
