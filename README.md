@@ -55,4 +55,6 @@ This project is a Django-based chat application that uses Django Channels for We
 
 - Access the Django admin panel at `http://localhost:8000/admin`
 - Connect to Websocket endpoint on `ws://localhost:8000/ws/chat/`
-- Use postman for testing REST APIs or Websockets, import 
+- Use postman for testing REST APIs or Websockets, import the postman collection `Chat app.postman_collection.json` into postman.
+
+## Websocket terminal client for testing
