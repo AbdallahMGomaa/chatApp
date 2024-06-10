@@ -82,7 +82,6 @@ if __name__ == '__main__':
     send_message_thread.start()
 
     def signal_handler(sig, frame):
-        print('inside signal handler')
         send_message_thread.join()
         websocket_thread.join()
         # ws.close()

@@ -58,3 +58,9 @@ This project is a Django-based chat application that uses Django Channels for We
 - Use postman for testing REST APIs or Websockets, import the postman collection `Chat app.postman_collection.json` into postman.
 
 ## Websocket terminal client for testing
+1. Connect to the terminal client on two separate terminals
+   ```bash
+   python .\client_test.py --user <username> --password <password>
+   ```
+2. Enter the username of the receiver and the message on one terminal and notice that the message is received on the other terminal
+3. Make sure that the consumer is running to receive the messages
