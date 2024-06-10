@@ -29,12 +29,20 @@ services:
     depends_on:
       - zookeeper
 
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
   web:
     build:
       context: .
+      dockerfile: Dockerfile.web
       args:
-        - GUNICORN_WORKERS=${GUNICORN_WORKERS}
-    command: gunicorn chatApp.wsgi:application --bind 0.0.0.0:${DJANGO_PORT} --workers ${GUNICORN_WORKERS}
+        - DAPHNE_WORKERS=${DAPHNE_WORKERS}
+    environment:
+      DJANGO_SETTINGS_MODULE: chatApp.settings
+    command: ["daphne", "-b", "0.0.0.0", "-p", "8000", "chatApp.asgi:application"]
     volumes:
       - .:/app
     ports:
@@ -43,6 +51,20 @@ services:
       - db
       - kafka
       - zookeeper
+
+  kafka_consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.kafka
+    environment:
+      - KAFKA_BROKER=kafka_temp:9092
+      - DJANGO_SETTINGS_MODULE=chatApp.settings
+    command: [ "python", "manage.py", "run_consumers" ]
+    volumes:
+      - .:/app
+    depends_on:
+      - kafka
+      - web
 
 volumes:
   postgres_data:

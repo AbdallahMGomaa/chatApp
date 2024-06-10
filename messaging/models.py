@@ -8,6 +8,7 @@ class Message(models.Model):
     receiver = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='receiver')
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+    is_seen = models.BooleanField(default=False)
 
 
 class FileType(models.TextChoices):
