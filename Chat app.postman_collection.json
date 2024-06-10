@@ -1,0 +1,402 @@
+{
+	"info": {
+		"_postman_id": "fdc6bc05-96f8-4020-8bb9-79da40035f28",
+		"name": "Chat app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11893826"
+	},
+	"item": [
+		{
+			"name": "auth token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/auth/token/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth token refresh",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxNzQ1MTQ3OCwiaWF0IjoxNzE3MzY1MDc4LCJqdGkiOiIzMzFhOGM2MjgyNWI0Y2UyODBhYWUxNTU3ODM1NGI5NSIsInVzZXJfaWQiOjF9.gmz4JC66ewEwbXVTJWChLSRfwR0G8WH975--RvdaIwc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/auth/token/refresh/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"token",
+						"refresh",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"user\",\r\n    \"email\": \"user@user.com\",\r\n    \"password\": \"user\",\r\n    \"first_name\": \"abdallah\",\r\n    \"last_name\": \"gomaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/auth/register/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send message 1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3MzY5MDU2LCJpYXQiOjE3MTczNjg3NTYsImp0aSI6IjVhZGJlYmRhZjUxMzRhMWJhNGUwMmU4NjUxMTk1YWY5IiwidXNlcl9pZCI6MX0.V-1UqvTthFjTxuTgyssCfWUOFQUg-DAy_DO0CHMr4Yc"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "attachment",
+							"type": "file",
+							"src": "/C:/Users/Abdal/Desktop/1674720602888.jpeg"
+						},
+						{
+							"key": "content",
+							"value": "hi",
+							"type": "text"
+						},
+						{
+							"key": "attachment_type",
+							"value": "image",
+							"type": "text"
+						},
+						{
+							"key": "receiver",
+							"value": "user",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/chat/messages/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"chat",
+						"messages",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send message 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NDQxNDk4LCJpYXQiOjE3MTc0NDExOTgsImp0aSI6Ijc0OWRhNDYzNTE1NzQ5ZTc5MDNkNzQ3ZmJiYWU0MDczIiwidXNlcl9pZCI6Mn0.AKWTLYfMmpqPWOegY_9MDZDmkH1e4QGstM-7Zhh4Fg0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "content",
+							"value": "hi yasta 3aml eh",
+							"type": "text"
+						},
+						{
+							"key": "receiver",
+							"value": "admin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/chat/messages/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"chat",
+						"messages",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get chats 1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NDM2OTA0LCJpYXQiOjE3MTc0MzY2MDQsImp0aSI6IjE3YzZjYThmNDdlZjRiNDk5NGE4MmYzYjA2M2RjZjUyIiwidXNlcl9pZCI6MX0.CgOI7Gc1L8c7LpVbKHZSnrlDTSmoBMI0IGlQVfpy6ZQ"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "attachment",
+							"type": "file",
+							"src": "/C:/Users/Abdal/Desktop/1674720602888.jpeg"
+						},
+						{
+							"key": "content",
+							"value": "hi",
+							"type": "text"
+						},
+						{
+							"key": "attachment_type",
+							"value": "image",
+							"type": "text"
+						},
+						{
+							"key": "receiver",
+							"value": "user",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/chat/messages/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"chat",
+						"messages",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get chats 2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NDQxMjE4LCJpYXQiOjE3MTc0NDA5MTgsImp0aSI6ImRhYzBkNWQ4NGNiYTRkMjA4ZDI2NTU1MGM1ZWY5NGFhIiwidXNlcl9pZCI6MX0.vMOK3R_mfbuwbqlyRmY4pdqcsGQploaka09-hfDuo0U"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "attachment",
+							"type": "file",
+							"src": "/C:/Users/Abdal/Desktop/1674720602888.jpeg"
+						},
+						{
+							"key": "content",
+							"value": "hi",
+							"type": "text"
+						},
+						{
+							"key": "attachment_type",
+							"value": "image",
+							"type": "text"
+						},
+						{
+							"key": "receiver",
+							"value": "user",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/chat/messages/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"chat",
+						"messages",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get unread messages 1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NDQyNTQ4LCJpYXQiOjE3MTc0NDIyNDgsImp0aSI6IjcxY2Q2NmQxNTFlMzRiOWZhYTNhNTAyNDgzY2NjNmI0IiwidXNlcl9pZCI6Mn0.cbd5DS9FzaQMmp_X_GRhFQPDALeDJrftLflyplJd4PI"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "attachment",
+							"type": "file",
+							"src": "/C:/Users/Abdal/Desktop/1674720602888.jpeg"
+						},
+						{
+							"key": "content",
+							"value": "hi",
+							"type": "text"
+						},
+						{
+							"key": "attachment_type",
+							"value": "image",
+							"type": "text"
+						},
+						{
+							"key": "receiver",
+							"value": "user",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/chat/messages/unread/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"chat",
+						"messages",
+						"unread",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get unread messages 2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NDQyNTQ4LCJpYXQiOjE3MTc0NDIyNDgsImp0aSI6IjcxY2Q2NmQxNTFlMzRiOWZhYTNhNTAyNDgzY2NjNmI0IiwidXNlcl9pZCI6Mn0.cbd5DS9FzaQMmp_X_GRhFQPDALeDJrftLflyplJd4PI"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "attachment",
+							"type": "file",
+							"src": "/C:/Users/Abdal/Desktop/1674720602888.jpeg"
+						},
+						{
+							"key": "content",
+							"value": "hi",
+							"type": "text"
+						},
+						{
+							"key": "attachment_type",
+							"value": "image",
+							"type": "text"
+						},
+						{
+							"key": "receiver",
+							"value": "user",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/chat/messages/unread/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"chat",
+						"messages",
+						"unread",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

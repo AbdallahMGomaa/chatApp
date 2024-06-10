@@ -83,10 +83,10 @@ TEMPLATES = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'chat_db',
-        'USER': 'chat_user',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
+        'NAME': config('POSTGRES_DB', default='chatApp'),
+        'USER': config('POSTGRES_USER', 'postgres'),
+        'PASSWORD': config('POSTGRES_PASSWORD', 'password'),
+        'HOST': config('POSTGRES_HOST', default='localhost'),
         'PORT': config('POSTGRES_PORT', default='5432'),
     }
 }
@@ -124,6 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -160,17 +161,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ASGI_APPLICATION = 'chatApp.asgi.application'
 
+KAFKA_BROKER_URL = config('KAFKA_BROKER_URL', default='kafka_temp:9092')
+KAFKA_CHAT_TOPIC = config('KAFKA_CHAT_TOPIC', default='chat')
+KAFKA_SIGNUP_TOPIC = config('KAFKA_SIGNUP_TOPIC', default='signup')
+
+REDIS_HOST = config('REDIS_HOST', default='localhost')
+REDIS_PORT = config('REDIS_PORT', default='6379')
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('localhost', 6379)],
+            'hosts': [(REDIS_HOST, REDIS_PORT)],
         }
     },
 }
-
-KAFKA_BROKER_URL = config('KAFKA_BROKER_URL', default='localhost:9092')
-
-KAFKA_CHAT_TOPIC = config('KAFKA_CHAT_TOPIC', default='chat')
-KAFKA_SIGNUP_TOPIC = config('KAFKA_SIGNUP_TOPIC', default='signup')
-

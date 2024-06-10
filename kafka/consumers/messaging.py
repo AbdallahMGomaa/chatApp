@@ -1,14 +1,7 @@
-import json
 import ast
-import os
-import django
 from confluent_kafka import Consumer, KafkaException, KafkaError
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
-
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chatApp.settings')
-django.setup()
 
 from django.conf import settings
 from messaging.models import Message
@@ -70,5 +63,3 @@ class MessageConsumer:
         finally:
             self.consumer.close()
             print('messaging consumer is down')
-
-

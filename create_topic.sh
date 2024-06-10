@@ -1,0 +1,1 @@
+docker-compose exec kafka kafka-topics.sh --create --topic chat --partitions 1 --replication-factor 1 --bootstrap-server localhost:9092
